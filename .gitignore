@@ -15,4 +15,8 @@ node_modules
 # .DS_Store is only for Mac users
 **/.DS_Store
 
+# "review starter files" from section Readme.md 
 README.md
+
+# "build the application" from section Review the .gitignore file
+pnpm-lock.yaml

@@ -2,5 +2,133 @@
 *,
 *:before,
 *:after {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
+
+#top-header {
+  display: flex;
+  justify-content: space-between;
+  margin: 2vw;
+  font-family: 'Mulish', sans-serif;
+  color: black;
+}
+
+.siteName {
+  font-size: 26px;
+}
+
+#tools {
+  font-size: 12px;
+}
+
+a, a:visited, a:active, li {
+  text-decoration: none;
+  color: inherit;
+} 
+
+nav {
+  display: flex;
+  background-color: black;
+  color: white;
+  align-items: center;
+  height: 50px;
+  margin: 20px 0;
+  font-family: 'Mulish', sans-serif;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  justify-content: space-evenly;
+  width: 100%;
+  padding: 0;
+}
+
+main, footer {
+  margin: 2vw;
+}
+
+.hero {
+  position: relative;
+  width: 100%;
+  margin: 10px 0;
+}
+
+.hero img {
+  width: 100%;
+  height: auto;
+}
+
+.hero .overlay {
+  position: absolute;
+  top: 50%;
+  left: 20%;
+  transform: translate(-50%, -50%);
+  color: #4ac8e8;
+  text-align: center;
+  font-family: 'Mulish', sans-serif;
+  background-color: rgba(255, 255, 255, 0.8);
+  text-align: left;
+  width: 38%;
+  font-size: 12px;
+  margin: 5px;
+}
+
+.overlay img {
+  width: 100px;
+  background-color: #4ac8e8;
+  margin-top: 8px;
+}
+
+.reviews {
+  margin: 20px 0;
+}
+
+.reviews p {
+  line-height: 25px;
+}
+
+.upgrade-figures {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  justify-items: center;
+  text-align: center;
+}
+
+.upgrades h2{
+  margin-bottom: 15px;
+}
+
+figure {
+  background-color: #4ac8e8;
+  padding: 10px;
+  border: 1px solid #333;
+  width: 160px;
+}
+
+figure img {
+  max-width: 100%;
+  height: auto;
+}
+
+figcaption {
+  margin-top: 8px;
+}
+
+figcaption a {
+  color: blue;
+  text-decoration: underline;
+}
+
+@media screen and (min-width: 600px) {
+  li:hover {
+    background-color: white;
+    color: black;
+  }
+
+
+}
+  

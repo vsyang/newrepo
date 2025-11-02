@@ -229,3 +229,13 @@ VALUES   (
     'White',
     5
   );
+
+-- Modify "GM Hummer" record to read "a huge interior" rather than "small interiors"
+UPDATE public.inventory 
+SET inv_description = REPLACE(inv_description, 'the small interiors', 'a huge interior')  
+WHERE inv_id = 10;
+
+-- Update file paths in inv_image and inv_thumbnail columns
+UPDATE public.inventory
+SET inv_image = REPLACE(inv_image, '/images/', '/images/vehicles/'),
+    inv_thumbnail = REPLACE(inv_thumbnail, '/images/', '/images/vehicles/');

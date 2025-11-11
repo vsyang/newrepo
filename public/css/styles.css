@@ -50,6 +50,7 @@ main, footer {
   margin: 3vw;
 }
 
+/** Homepage **/
 .hero {
   position: relative;
   width: 100%;
@@ -131,11 +132,17 @@ footer {
   font-family: 'Mulish', sans-serif;
 }
 
+/** Types View **/
+
+
+
+/**Large Screen View **/
 @media screen and (min-width: 600px) {
   body {
     background-image: url('../images/site/small_check.jpg');
   }
 
+  /** Homepage **/
   #wrapper {
     border: #4ac8e8 5px solid;
     border-radius: 10px;
@@ -196,5 +203,7 @@ footer {
   .upgrades {
     grid-row: 3/4;
   }
+
+  /** Types View **/
 }
   

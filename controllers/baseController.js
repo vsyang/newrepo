@@ -6,4 +6,14 @@ baseController.buildHome = async function(req, res){
     res.render("index", { title: "Home", nav })
 }
 
+/* ***************************
+ *  Intentionally trigger a 500 error
+ * ************************** */
+baseController.triggerError = async function (req, res, next) {
+  const error = new Error("Intentional server error for testing.")
+  error.status = 500
+  throw error          
+}
+
+
 module.exports = baseController

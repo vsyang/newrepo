@@ -275,6 +275,14 @@ hr {
     gap: 20px;
   }
 
+  .vehicle-detail__image-wrapper {
+    width: 150%;
+  }
+
+  .vehicle-detail img {
+    width: 100%;
+  }
+
   .vehicle-detail h2 {
     margin-top: 25px;
   }

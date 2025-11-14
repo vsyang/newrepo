@@ -72,19 +72,19 @@ Util.buildVehicleDetail = function (vehicle) {
   return `
     <section class="vehicle-detail">
       <figure class="vehicle-detail__image-wrapper">
-        <img src="${vehicle.inv_image}" alt="Image of ${vehicle.inv_year} ${vehicle.inv_make} ${vehicle.inv_model}">
+        <img src="${vehicle.inv_image}" alt="${vehicle.inv_color} ${vehicle.inv_year} ${vehicle.inv_make} ${vehicle.inv_model}">
       </figure>
       <div class="vehicle-detail__info">
         <h2>${vehicle.inv_year} ${vehicle.inv_make} ${vehicle.inv_model}</h2>
-        <p class="vehicle-detail__price">${priceFormatted}</p>
-        <p class="vehicle-detail__miles">Mileage: ${milesFormatted} miles</p>
+        <p class="vehicle-detail__price"><strong>No-Haggle Price: ${priceFormatted}</strong></p>
+        <p class="vehicle-detail__miles"><strong>Mileage:</strong> ${milesFormatted} miles</p>
 
         <p class="vehicle-detail__color"><strong>Color:</strong> ${vehicle.inv_color}</p>
         <p class="vehicle-detail__class">
           <strong>Classification:</strong> ${vehicle.classification_name || ""}
         </p>
 
-        <p class="vehicle-detail__description">${vehicle.inv_description}</p>
+        <p class="vehicle-detail__description"><strong>Description:</strong> ${vehicle.inv_description}</p>
       </div>
     </section>
   `

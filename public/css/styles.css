@@ -112,7 +112,7 @@ figure {
   width: 160px;
 }
 
-figure img {
+.homepage img {
   max-width: 80px;
   height: 80px;
   overflow: hidden;
@@ -130,6 +130,7 @@ figcaption a {
 
 footer {
   font-family: 'Mulish', sans-serif;
+  margin-top: 50px;
 }
 
 /** Types View **/
@@ -165,8 +166,31 @@ hr {
   width: 100%;
 }
 
+/** Inventory Single View **/ 
+.vehicle-detail__image-wrapper {
+  width: 100%;
+  margin: 30px 0;
+  background-color: white;
+  border: none;
+}
 
-/**Large Screen View **/
+.vehicle-detail img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.vehicle-detail__info  {
+  line-height: 35px;
+}
+
+.vehicle-detail__price,
+.vehicle-detail__color,
+.vehicle-detail__description {
+  background-color: rgba(191, 191, 191, 0.161);
+}
+
+/** Large Screen View **/
 @media screen and (min-width: 600px) {
   body {
     background-image: url('../images/site/small_check.jpg');
@@ -243,6 +267,16 @@ hr {
 
   .namePrice {
     height: 150px;
+  }
+
+  /** Inventory Single View **/
+  .vehicle-detail {
+    display: flex;
+    gap: 20px;
+  }
+
+  .vehicle-detail h2 {
+    margin-top: 25px;
   }
 
 }

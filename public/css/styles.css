@@ -235,6 +235,13 @@ input {
   text-decoration: underline;
 }
 
+/** Register Form **/
+.register-form {
+  padding: 15px;
+  font-family: 'Mulish', sans-serif;
+  font-size: 15px;
+}
+
 .register {
   display: block;
   margin: 10px auto;
@@ -247,7 +254,7 @@ input {
 }
 
 #passBtn {
-  border: 2px solid #000;
+  border: 2px solid #000000a0;
   border-radius: 5px;
   padding: 4px;
   font-size: small;

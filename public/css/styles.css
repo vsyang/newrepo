@@ -133,6 +133,10 @@ footer {
   margin-top: 50px;
 }
 
+.notice {
+  color: rgb(223, 57, 57);
+}
+
 /** Types View **/
 #inv-display li {
   border: #7c7f8132 3px solid;

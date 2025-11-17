@@ -242,6 +242,7 @@ input {
   padding: 15px;
   font-family: 'Mulish', sans-serif;
   font-size: 15px;
+  margin: 1px 0 5px;
 }
 
 .register {
@@ -271,8 +272,9 @@ input:required:valid {
   background-color: rgba(134, 227, 246, 0.675) !important;
 }
 
-.verror {
+.notice {
   color: rgb(183, 3, 3);
+  margin-bottom: 10px;
 }
 
 /** Large Screen View **/
@@ -379,7 +381,7 @@ input:required:valid {
     max-width: 400px;
   }
 
-  .verror {
+  .notice {
     grid-column: span 2;
   }
 }

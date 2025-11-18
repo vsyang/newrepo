@@ -21,7 +21,8 @@
 
   <form id="addClassificationForm" class="form" action="/inv/add-classification" method="post">
     <fieldset>
-      <label for="classification_name">Classification Name</label>
+      <legend>&nbsp;</legend>
+      <label class="class-name" for="classification_name">Classification Name</label>
       <p>NAME MUST BE ONE WORD AND ALPHABETIC CHARACTERS ONLY</p>
       <input
         type="text"
@@ -30,8 +31,8 @@
         required
         pattern="^[A-Za-z]+$"
         value="<%= locals.classification_name %>"
-      />
-      <button type="submit">Add Classification</button>
+      >
+      <button class="submit" type="submit">Add Classification</button>
     </fieldset>
   </form>
 </div>

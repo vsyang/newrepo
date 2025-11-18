@@ -288,6 +288,11 @@ input:required:valid {
   color: rgb(4, 4, 177);
 }
 
+/** New Classification View **/
+.add-classification {
+  border: solid 1px rgb(55, 209, 252);
+  padding
+}
 
 
 /** Large Screen View **/

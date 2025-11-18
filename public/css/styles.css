@@ -277,6 +277,19 @@ input:required:valid {
   margin-bottom: 10px;
 }
 
+/** Vehicle Management View **/
+.inv-management ul {
+  list-style: none;
+}
+
+.inv-management li {
+  text-decoration: underline;
+  margin: 0 0 10px 15px;
+  color: rgb(4, 4, 177);
+}
+
+
+
 /** Large Screen View **/
 @media screen and (min-width: 600px) {
   body {

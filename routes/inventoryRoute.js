@@ -5,7 +5,11 @@ const invController = require("../controllers/invController")
 
 // Route to build inventory by classification view
 router.get("/type/:classificationId", invController.buildByClassificationId);
-// Route for single vehicle view
+
+// Route to build single vehicle view
 router.get("/detail/:invId", invController.buildByInvId);
+
+// Route to build management view
+router.get("/", invController.buildManagementView)
 
 module.exports = router

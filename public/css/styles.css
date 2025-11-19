@@ -216,7 +216,7 @@ label {
   display: block;
 }
 
-input {
+input, textarea {
   width: 100%;
   margin: 5px 0 10px;
   padding: 5px;
@@ -320,6 +320,14 @@ fieldset {
   margin: 8px 0;
 }
 
+/** Add Vehicle View **/
+#classificationList {
+  padding: 2px;
+}
+
+textarea {
+  font-family: 'Mulish', sans-serif;
+}
 
 /** Large Screen View **/
 @media screen and (min-width: 600px) {

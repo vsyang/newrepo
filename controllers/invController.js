@@ -119,7 +119,7 @@ invCont.addClassification = async function (req, res, next) {
 /* ***************************
  *  Build Add New Vehicle View
  * ************************** */
-invCont.buildAddInventory = async function (req, res, next) {
+invCont.buildAddVehicle = async function (req, res, next) {
   const nav = await utilities.getNav()
   const classificationList = await utilities.buildClassificationList()
   res.render("inventory/add-inventory", {
@@ -129,6 +129,72 @@ invCont.buildAddInventory = async function (req, res, next) {
     errors: null,
   })
 }
+
+/* ***************************
+ *  Process Add New Vehicle
+ * ************************** */
+invCont.addInventory = async function (req, res, next) {
+  try {
+    const {
+      inv_make,
+      inv_model,
+      inv_year,
+      inv_description,
+      inv_image,
+      inv_thumbnail,
+      inv_price,
+      inv_miles,
+      inv_color,
+      classification_id,
+    } = req.body
+
+    const result = await invModel.addInventory(
+      inv_make,
+      inv_model,
+      inv_year,
+      inv_description,
+      inv_image,
+      inv_thumbnail,
+      inv_price,
+      inv_miles,
+      inv_color,
+      classification_id
+    )
+
+    if (result.rowCount > 0) {
+      req.flash("notice", `The ${inv_year} ${inv_make} ${inv_model} was successfully added.`)
+      const nav = await utilities.getNav()
+      return res.status(201).render("inventory/management", {
+        title: "Vehicle Management",
+        nav,
+        notice: req.flash("notice"),
+      })
+    } else {
+      req.flash("notice", "Sorry, the vehicle could not be added.")
+      const nav = await utilities.getNav()
+      const classificationList = await utilities.buildClassificationList(classification_id)
+      return res.status(501).render("inventory/add-inventory", {
+        title: "Add New Vehicle",
+        nav,
+        classificationList,
+        errors: null,
+        inv_make,
+        inv_model,
+        inv_year,
+        inv_description,
+        inv_image,
+        inv_thumbnail,
+        inv_price,
+        inv_miles,
+        inv_color,
+        classification_id,
+      })
+    }
+  } catch (err) {
+    next(err)
+  }
+}
+
 
 
 module.exports = invCont

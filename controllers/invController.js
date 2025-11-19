@@ -116,5 +116,19 @@ invCont.addClassification = async function (req, res, next) {
   }
 }
 
+/* ***************************
+ *  Build Add New Vehicle View
+ * ************************** */
+invCont.buildAddInventory = async function (req, res, next) {
+  const nav = await utilities.getNav()
+  const classificationList = await utilities.buildClassificationList()
+  res.render("inventory/add-inventory", {
+    title: "Add New Vehicle",
+    nav,
+    classificationList,
+    errors: null,
+  })
+}
+
 
 module.exports = invCont

@@ -20,9 +20,8 @@
     <fieldset>
       <legend>&nbsp;</legend>
 
-      <label class="class-id" for="classification_id">Classification</label>
-        <%- classificationList %>
-      </select>
+
+      <%- classificationList %>
 
       <label for="inv_make">Make</label>
       <input 
@@ -82,9 +81,12 @@
         type="number"
         id="inv_year"
         name="inv_year"
-        required minlength="4"
+        required
+        min="1900"
+        max="2100"
         placeholder="4-digit year"
-        value="<%= locals.inv_year  || '' %>">
+        value="<%= locals.inv_year || '' %>">
+
 
       <label for="inv_miles">Miles</label>
       <input
@@ -92,10 +94,10 @@
         id="inv_miles"
         name="inv_miles"
         required
-        pattern="[0-9]*"
+        min="0"
         step="1"
         placeholder="Digits only"
-        value="<%= locals.inv_miles  || '' %>">
+        value="<%= locals.inv_miles || '' %>">
 
       <label for="inv_color">Color</label>
       <input

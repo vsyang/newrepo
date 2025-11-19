@@ -131,7 +131,7 @@ invCont.buildAddVehicle = async function (req, res, next) {
 }
 
 /* ***************************
- *  Process Add New Vehicle
+ *  Add New Vehicle Into Inventory
  * ************************** */
 invCont.addInventory = async function (req, res, next) {
   try {

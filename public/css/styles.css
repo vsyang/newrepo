@@ -214,6 +214,7 @@ hr {
 
 label {
   display: block;
+  margin-top: 5px;
 }
 
 input, textarea {
@@ -290,7 +291,7 @@ input:required:valid {
 }
 
 /** New Classification View **/
-.add-classification {
+.add-classification , .add-inventory {
   padding: 20px;
   width: 90%;
   max-width: 450px;
@@ -309,7 +310,7 @@ fieldset {
   font-size: 24px;
 }
 
-.add-classification p {
+.add-classification p, .add-inventory p {
   font-style: italic;
   font-family: 'Times New Roman', Times, serif;
   margin: 5px;
@@ -437,5 +438,9 @@ textarea {
     grid-column: span 2;
   }
 
-  
+  /** Add Vehicle View **/
+  select {
+    margin-top: 5px;
+  }
+
 }

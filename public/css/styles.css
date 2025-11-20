@@ -290,6 +290,11 @@ input:required:valid {
   color: rgb(4, 4, 177);
 }
 
+.notice {
+  list-style-type: disc;
+  font-size: 13px;
+}
+
 /** New Classification View **/
 .add-classification , .add-inventory {
   padding: 20px;

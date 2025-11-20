@@ -6,6 +6,12 @@
 
 <%- messages() %>
 
+<% if (notice && notice.length > 0) { %>
+  <div class="notice">
+    <%= notice[0] %>
+  </div>
+<% } %>
+
 <div class="inv-management">
       <ul>
         <li>

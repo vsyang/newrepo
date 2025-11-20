@@ -163,12 +163,7 @@ invCont.addInventory = async function (req, res, next) {
 
     if (result.rowCount > 0) {
       req.flash("notice", `The ${inv_year} ${inv_make} ${inv_model} was successfully added.`)
-      const nav = await utilities.getNav()
-      return res.status(201).render("inventory/management", {
-        title: "Vehicle Management",
-        nav,
-        notice: req.flash("notice"),
-      })
+      return res.redirect("/inv/")
     } else {
       req.flash("notice", "Sorry, the vehicle could not be added.")
       const nav = await utilities.getNav()

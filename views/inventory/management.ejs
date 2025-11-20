@@ -7,9 +7,9 @@
 <%- messages() %>
 
 <% if (notice && notice.length > 0) { %>
-  <div class="notice">
-    <%= notice[0] %>
-  </div>
+  <ul class="notice">
+    <li><%= notice[0] %></li>
+  </ul>
 <% } %>
 
 <div class="inv-management">

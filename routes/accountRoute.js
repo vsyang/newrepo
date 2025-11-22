@@ -16,8 +16,8 @@ router.get("/login", utilities.handleErrors(accountController.buildLogin))
  * Process Login
  *******************************************/
 router.post("/login",
-  // regValidate.loginRules(),
-  // regValidate.checkLoginData,
+  regValidate.loginRules(),
+  regValidate.checkLoginData,
   utilities.handleErrors(accountController.accountLogin)
 )
 

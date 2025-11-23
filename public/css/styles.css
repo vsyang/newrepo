@@ -328,7 +328,7 @@ input:required:valid {
 }
 
 /** New Classification View **/
-.add-classification , .add-inventory {
+.add-classification , .add-inventory, .update {
   padding: 20px;
   width: 90%;
   max-width: 450px;
@@ -347,20 +347,16 @@ fieldset {
   font-size: 24px;
 }
 
-.add-classification p, .add-inventory p {
+.italicize {
   font-style: italic;
   font-family: 'Times New Roman', Times, serif;
-  margin: 5px;
-}
-
-#addClassificationForm p {
-  font-size: 15px;
-  margin: 8px 0;
+  margin: 5px 0 20px 2px;
 }
 
 /** Add Vehicle View **/
 #classificationList {
   padding: 2px;
+  margin-bottom: 5px;
 }
 
 textarea {
@@ -368,10 +364,10 @@ textarea {
 }
 
 .classLabel {
-  font-family: 'Mulish', sans-serif !important;
+  font-family: 'Mulish', sans-serif;
   font-size: 16px;
-  font-style: normal !important;
-  margin: 5px 0 0 !important;
+  font-style: normal;
+  margin: 5px 0 0;
 }
 
 /** Large Screen View **/

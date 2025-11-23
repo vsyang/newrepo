@@ -311,7 +311,7 @@ invCont.updateInventory = async (req, res, next) => {
  *  Build Delete Confirmation View
  * ************************** */
 invCont.deleteView = async function (req, res, next) {
-  const inv_id = parseInt(req.params.inv_id)
+  const inv_id = parseInt(req.params.invId)
   let nav = await utilities.getNav()
   const item = await invModel.getInventoryByInvId(inv_id)
   const itemName = `${item.inv_year} ${item.inv_make} ${item.inv_model}`
@@ -344,7 +344,7 @@ invCont.deleteItem = async function (req, res, next) {
     res.redirect('/inv/')
   } else {
     req.flash("notice", `Sorry, the ${itemName} did not get deleted`)
-    res.redirect('/inv/delete/inv_id')
+    res.redirect(`/inv/delete/${inv_id}`)
   }
 }
 

@@ -162,4 +162,51 @@ Util.checkJWTToken = (req, res, next) => {
   }
  }
 
+ /* ****************************************
+ *  Check if account is Employee or Admin
+ * *************************************** */
+Util.checkAuthorization = async function (req, res, next) {
+  const token = req.cookies?.jwt
+
+  // No token at all → send to login
+  if (!token) {
+    let nav = await Util.getNav()
+    req.flash("notice", "Please log in with an Employee or Admin account.")
+    return res.status(403).render("account/login", {
+      title: "Login",
+      nav,
+      errors: null,
+    })
+  }
+
+  try {
+    const  authorized = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET)
+
+    res.locals.accountData =  authorized
+
+    if (
+       authorized.account_type === "Employee" ||
+       authorized.account_type === "Admin"
+    ) {
+      return next()
+    } else {
+      let nav = await Util.getNav()
+      req.flash("notice", "You do not have permission to access that page.")
+      return res.status(403).render("account/login", {
+        title: "Login",
+        nav,
+        errors: null,
+      })
+    }
+  } catch (err) {
+    let nav = await Util.getNav()
+    req.flash("notice", "Your session has expired. Please log in again.")
+    return res.status(403).render("account/login", {
+      title: "Login",
+      nav,
+      errors: null,
+    })
+  }
+}
+
 module.exports = Util

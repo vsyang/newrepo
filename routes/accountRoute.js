@@ -38,9 +38,14 @@ router.post(
 )
 
 /* ******************************************
- * Account Management
+ * Account Management View
  *******************************************/
 router.get("/", utilities.checkLogin,
   utilities.handleErrors(accountController.buildAccountManagement))
+
+/* ******************************************
+ * Account Logout
+ *******************************************/
+router.get("/logout", accountController.logoutAccount)
 
 module.exports = router

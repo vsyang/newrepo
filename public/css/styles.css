@@ -371,6 +371,11 @@ textarea {
   margin: 5px 0 0;
 }
 
+/** Account Management View **/
+.margin-right {
+  margin-right: 15px;
+}
+
 /** Large Screen View **/
 @media screen and (min-width: 600px) {
   body {

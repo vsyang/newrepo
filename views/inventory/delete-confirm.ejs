@@ -1,0 +1,60 @@
+<% if (title) { %>
+  <h1>
+    <%= title %>
+  </h1>
+<% } else { res.redirect('/') } %>
+
+<%- messages() %>
+
+<% if (errors) { %>
+  <ul class="notice">
+    <% errors.array().forEach(error => { %>
+      <li><%= error.msg %></li>
+    <% }) %>
+  </ul>
+<% } %>
+
+<div class="delete">
+  <p class="italicize">Confirm Deletion - The deletion is permanent.</p>
+  <form action="/inv/delete" method="post">
+    <fieldset>
+      <legend>&nbsp;</legend>
+
+      <input type="hidden" name="inv_id" value="<%= inv_id %>">
+
+      <label for="inv_make">Make</label>
+      <input 
+        type="text"
+        id="inv_make"
+        name="inv_make"
+        readonly
+        value="<%= inv_make || '' %>">
+
+      <label for="inv_model">Model</label>
+      <input
+        type="text"
+        id="inv_model"
+        name="inv_model"
+        readonly
+        value="<%= inv_model || '' %>">
+
+      <label for="inv_price">Price</label>
+      <input
+        type="number"
+        id="inv_price"
+        name="inv_price"
+        readonly
+        value="<%= inv_price || '' %>">
+
+      <label for="inv_year">Year</label>
+      <input
+        type="number"
+        id="inv_year"
+        name="inv_year"
+        readonly
+        value="<%= inv_year || '' %>">
+
+      <button class="submit" type="submit">Delete Vehicle</button>
+    </fieldset>
+  </form>
+</div>

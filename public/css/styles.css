@@ -297,6 +297,7 @@ input:required:valid {
 .notice {
   list-style-type: disc;
   font-size: 13px;
+  font-style: italic;
 }
 
 .inv-update {
@@ -328,7 +329,7 @@ input:required:valid {
 }
 
 /** New Classification View **/
-.add-classification , .add-inventory, .update {
+.add-classification , .add-inventory, .update, .delete {
   padding: 20px;
   width: 90%;
   max-width: 450px;

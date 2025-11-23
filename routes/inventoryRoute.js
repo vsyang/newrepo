@@ -48,7 +48,7 @@ router.get(
   utilities.handleErrors(invController.getInventoryJSON)
 )
 
-// Route to build edit-vehicle view (GET)
+// Route to build edit-vehicle view
 router.get(
   "/edit/:invId",
   utilities.handleErrors(invController.buildEditInventory)
@@ -60,6 +60,16 @@ router.post(
   invValidate.inventoryRules(),
   invValidate.checkInventoryData,
   utilities.handleErrors(invController.updateInventory)
+)
+
+// Route to build delete-confirmation view
+router.get("/delete/:inv_id", 
+  utilities.handleErrors(invController.deleteView)
+)
+
+// Route to process the delete inventory request
+router.post("/delete", 
+  utilities.handleErrors(invController.deleteItem)
 )
 
 module.exports = router

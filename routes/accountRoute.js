@@ -54,7 +54,7 @@ router.get("/logout",
 /* ******************************************
  * Build Account Update View
  *******************************************/
-router.get("/update",
+router.get("/update/:accountId",
   utilities.handleErrors(accountController.buildUpdate
 ))
 

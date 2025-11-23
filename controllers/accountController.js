@@ -108,7 +108,7 @@ async function accountLogin(req, res) {
       return res.redirect("/account/")
     }
     else {
-      req.flash("message notice", "Please check your credentials and try again.")
+      req.flash("notice", "Please check your credentials and try again.")
       res.status(400).render("account/login", {
         title: "Login",
         nav,
@@ -125,27 +125,24 @@ async function accountLogin(req, res) {
  *  Build Account Management View
  * ************************************ */
 async function buildAccountManagement(req, res, next) {
-  let nav = await utilities.getNav()
-  let account_firstname = null
-
   try {
-    if (req.cookies && req.cookies.jwt) {
-      const payload = jwt.verify(
-        req.cookies.jwt,
-        process.env.ACCESS_TOKEN_SECRET
-      )
-      account_firstname = payload.account_firstname
-    }
-  } catch (err) {
-    account_firstname = null
-  }
+    const nav = await utilities.getNav()
 
-  res.render("account/management", {
-    title: "Account Management",
-    nav,
-    errors: null,
-    account_firstname
-  })
+    const accountData = res.locals.accountData
+
+    res.render("account/management", {
+      title: "Account Management",
+      nav,
+      errors: null,
+      account_firstname: accountData.account_firstname,
+      account_lastname: accountData.account_lastname,
+      account_email: accountData.account_email,
+      account_type: accountData.account_type,
+      account_id: accountData.account_id
+    })
+  } catch (err) {
+    next(err)
+  }
 }
 
 /* ****************************************
@@ -166,7 +163,7 @@ async function logoutAccount(req, res, next) {
 async function buildUpdate(req, res, next) {
   try {
     const nav = await utilities.getNav()
-    const account_id = req.params.account_id
+    const account_id = req.params.accountId
     const accountData = await accountModel.getAccountById(account_id)
 
     if (!accountData) {

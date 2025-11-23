@@ -7,6 +7,11 @@
   box-sizing: border-box;
 }
 
+#wrapper {
+  margin: 2vw auto;
+  width: 100%;
+}
+
 #top-header {
   display: flex;
   justify-content: space-between;
@@ -285,14 +290,41 @@ input:required:valid {
 }
 
 .inv-management li {
-  text-decoration: underline;
-  margin: 0 0 10px 15px;
+  margin: 5px 0 10px 15px;
   color: rgb(4, 4, 177);
 }
 
 .notice {
   list-style-type: disc;
   font-size: 13px;
+}
+
+.inv-update {
+  margin: 20px 0;
+}
+
+.inv-update p {
+  margin: 15px 0 5px;
+}
+
+.inv-update a {
+  text-decoration: underline;
+  margin: 0 0 10px 15px;
+  color: rgb(4, 4, 177);
+}
+
+#inventoryDisplay {
+  width: 350px;
+  margin: 10px 0;
+}
+
+#inventoryDisplay th {
+  width: 220px;
+  text-align: left;
+}
+
+#inventoryDisplay tr:nth-child(even) {
+  background-color: #4ac8e863;
 }
 
 /** New Classification View **/
@@ -333,6 +365,13 @@ fieldset {
 
 textarea {
   font-family: 'Mulish', sans-serif;
+}
+
+.classLabel {
+  font-family: 'Mulish', sans-serif !important;
+  font-size: 16px;
+  font-style: normal !important;
+  margin: 5px 0 0 !important;
 }
 
 /** Large Screen View **/

@@ -42,10 +42,8 @@ async function registerAccount(req, res) {
         account_password,
     } = req.body
 
-    // Hash the password before storing
   let hashedPassword
   try {
-    // regular password and cost (salt is generated automatically)
     hashedPassword = await bcrypt.hashSync(account_password, 10)
   } catch (error) {
     req.flash("notice", 'Sorry, there was an error processing the registration.')
@@ -162,11 +160,135 @@ async function logoutAccount(req, res, next) {
   }
 }
 
+/* ****************************************
+*  Build Account Update View
+* *************************************** */
+async function buildUpdate(req, res, next) {
+  try {
+    const nav = await utilities.getNav()
+    const account_id = req.params.account_id
+    const accountData = await accountModel.getAccountById(account_id)
+
+    if (!accountData) {
+      req.flash("notice", "Account not found.")
+      return res.redirect("/account/")
+    }
+
+    res.render("account/update", {
+      title: "Update Account Information",
+      nav,
+      errors: null,
+      account_id: accountData.account_id,
+      account_firstname: accountData.account_firstname,
+      account_lastname: accountData.account_lastname,
+      account_email: accountData.account_email,
+    })
+  } catch (error) {
+    next(error)
+  }
+}
+
+/* ****************************************
+*  Process Update to Account
+* *************************************** */
+async function updateAccountInfo(req, res, next) {
+  try {
+    const {
+      account_id,
+      account_firstname,
+      account_lastname,
+      account_email,
+    } = req.body
+
+    const updateResult = await accountModel.updateAccount(
+      account_firstname,
+      account_lastname,
+      account_email,
+      account_id
+    )
+
+    if (updateResult && updateResult.rowCount > 0) {
+      req.flash("notice", "Account information updated successfully.")
+      return res.redirect("/account/")
+    } else {
+      const nav = await utilities.getNav()
+      req.flash("notice", "Sorry, the account information could not be updated.")
+      return res.status(501).render("account/update", {
+        title: "Update Account Information",
+        nav,
+        errors: null,
+        account_id,
+        account_firstname,
+        account_lastname,
+        account_email,
+      })
+    }
+  } catch (error) {
+    next(error)
+  }
+}
+
+/* ****************************************
+*  Process Update to Password
+* *************************************** */
+async function updatePassword(req, res, next) {
+  try {
+    const { account_id, account_password } = req.body
+
+    if (!account_password) {
+      req.flash("notice", "Please provide a new password.")
+      const nav = await utilities.getNav()
+      const accountData = await accountModel.getAccountById(account_id)
+
+      return res.status(400).render("account/update", {
+        title: "Update Account Information",
+        nav,
+        errors: null,
+        account_id: accountData.account_id,
+        account_firstname: accountData.account_firstname,
+        account_lastname: accountData.account_lastname,
+        account_email: accountData.account_email,
+      })
+    }
+
+    const hashedPassword = await bcrypt.hash(account_password, 10)
+
+    const updateResult = await accountModel.updatePassword(
+      hashedPassword,
+      account_id
+    )
+
+    if (updateResult && updateResult.rowCount > 0) {
+      req.flash("notice", "Password updated successfully.")
+      return res.redirect("/account/")
+    } else {
+      req.flash("notice", "Sorry, the password could not be updated.")
+      const nav = await utilities.getNav()
+      const accountData = await accountModel.getAccountById(account_id)
+
+      return res.status(501).render("account/update", {
+        title: "Update Account Information",
+        nav,
+        errors: null,
+        account_id: accountData.account_id,
+        account_firstname: accountData.account_firstname,
+        account_lastname: accountData.account_lastname,
+        account_email: accountData.account_email,
+      })
+    }
+  } catch (error) {
+    next(error)
+  }
+}
+
 module.exports = {
   buildLogin,
   buildRegister,
   registerAccount,
   accountLogin,
   buildAccountManagement,
-  logoutAccount
+  logoutAccount,
+  buildUpdate,
+  updateAccountInfo,
+  updatePassword
 }

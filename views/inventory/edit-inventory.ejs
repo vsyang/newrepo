@@ -14,8 +14,8 @@
   </ul>
 <% } %>
 
-<div class="add-inventory">
-  <form id="addInventoryForm" class="form" action="/inv/edit" method="post">
+<div class="update">
+  <form id="updateForm" class="form" action="/inv/edit" method="post">
     <p>All fields are required.</p>
     <fieldset>
       <legend>&nbsp;</legend>
@@ -109,8 +109,8 @@
         required
         value="<%= inv_color  || '' %>">
 
-      <button class="submit" type="submit">Update Vehicle</button>
+      <button disabled class="submit" type="submit">Update Vehicle</button>
     </fieldset>
   </form>
 </div>
-<script src="/js/script.js"></script>
+<script src="/js/inv-update.js"></script>

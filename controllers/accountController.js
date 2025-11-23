@@ -107,6 +107,7 @@ async function accountLogin(req, res) {
       } else {
         res.cookie("jwt", accessToken, { httpOnly: true, secure: true, maxAge: 3600 * 1000 })
       }
+      req.flash("notice",`Welcome${accountData.account_firstname}!`)
       return res.redirect("/account/")
     }
     else {
@@ -128,10 +129,25 @@ async function accountLogin(req, res) {
  * ************************************ */
 async function buildAccountManagement(req, res, next) {
   let nav = await utilities.getNav()
+  let account_firstname = null
+
+  try {
+    if (req.cookies && req.cookies.jwt) {
+      const payload = jwt.verify(
+        req.cookies.jwt,
+        process.env.ACCESS_TOKEN_SECRET
+      )
+      account_firstname = payload.account_firstname
+    }
+  } catch (err) {
+    account_firstname = null
+  }
+
   res.render("account/management", {
     title: "Account Management",
     nav,
     errors: null,
+    account_firstname
   })
 }
 

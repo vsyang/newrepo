@@ -40,6 +40,7 @@ router.post(
 /* ******************************************
  * Account Management
  *******************************************/
-router.get("/",utilities.checkLogin, utilities.handleErrors(accountController.buildAccountManagement))
+router.get("/", utilities.checkLogin,
+  utilities.handleErrors(accountController.buildAccountManagement))
 
 module.exports = router

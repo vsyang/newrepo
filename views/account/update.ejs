@@ -1,0 +1,79 @@
+<% if (title) { %>
+  <h1>
+    <%= title %>
+  </h1>
+<% } else { res.redirect('/') } %>
+
+<%- messages() %>
+
+<div class="update-account">
+  <form class="update-form" action="/account/update" method="POST">
+    
+    <input type="hidden" name="account_id" value="<%= account_id %>">
+    
+    <fieldset>
+      <legend>&nbsp;</legend>
+      <label for="account_firstname">First Name</label>
+      <input 
+        type="text" 
+        id="account_firstname" 
+        name="account_firstname" 
+        required
+        value="<%= account_firstname %>">
+
+      <label for="account_lastname">Last Name:</label>
+      <input 
+      type="text" 
+      id="account_lastname" 
+      name="account_lastname" 
+      required
+      value="<%= account_lastname %>">
+
+      <label for="account_email">Email:</label>
+      <input 
+      type="email" 
+      id="account_email" 
+      name="account_email" 
+      required
+      value="<%= account_email %>">
+      
+      <button 
+        class="update-info"       
+        type="submit"
+        formaction="/account/update"
+        >Update</button>
+    </fieldset>
+
+    <fieldset>
+      <legend>&nbsp;</legend>
+
+      <div class="register-p">
+        <p>
+            * Password must be:
+        </p>
+        <p class="indent">
+            <br>∙ At least 12 characters in length
+            <br>∙ Contain at least 1 capital letter
+            <br>∙ Contain at least 1 number
+            <br>∙ Contain at least 1 special character
+        </p>
+      </div>
+
+      <label for="account_password">New Password*:</label>
+      <input 
+        type="password" 
+        id="account_password" 
+        name="account_password" 
+        pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$">
+      <span id="passBtn">Show Password</span>
+
+      <button 
+      class="update-password" 
+      type="submit"
+      formaction="/update-password"
+      >Change Password</button>
+    </fieldset>
+  </form>
+</div>
+
+<script src="/js/script.js"></script>

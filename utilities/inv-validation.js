@@ -99,6 +99,7 @@ invValidate.inventoryRules = () => {
 invValidate.checkInventoryData = async (req, res, next) => {
   const errors = validationResult(req)
   const {
+    inv_id,
     inv_make,
     inv_model,
     inv_year,
@@ -115,6 +116,30 @@ invValidate.checkInventoryData = async (req, res, next) => {
     const nav = await utilities.getNav()
     const classificationList = await utilities.buildClassificationList(classification_id)
 
+    const updating = req.originalUrl.includes("/inv/edit")
+
+    if (updating) {
+      // Update an existing vehicle
+      return res.render("inventory/edit-inventory", {
+        title: `Edit ${inv_year || ""} ${inv_make || ""} ${inv_model || ""}`,
+        nav,
+        classificationList,
+        errors,
+        inv_id,
+        inv_make,
+        inv_model,
+        inv_year,
+        inv_description,
+        inv_image,
+        inv_thumbnail,
+        inv_price,
+        inv_miles,
+        inv_color,
+        classification_id,
+      })
+    }
+
+    // Adding a new vehicle
     return res.render("inventory/add-inventory", {
       title: "Add New Vehicle",
       nav,
@@ -134,5 +159,6 @@ invValidate.checkInventoryData = async (req, res, next) => {
   }
   next()
 }
+
 
 module.exports = invValidate

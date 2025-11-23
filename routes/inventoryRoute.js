@@ -42,7 +42,24 @@ router.post(
   utilities.handleErrors(invController.addInventory)
 )
 
-// Route to update vehicle with classification_id
-router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON))
+// Route to get inventory as JSON (for the dropdown / AJAX)
+router.get(
+  "/getInventory/:classification_id",
+  utilities.handleErrors(invController.getInventoryJSON)
+)
+
+// Route to build edit-vehicle view (GET)
+router.get(
+  "/edit/:invId",
+  utilities.handleErrors(invController.buildEditInventory)
+)
+
+// Route to update vehicle (POST)
+router.post(
+  "/edit",
+  invValidate.inventoryRules(),
+  invValidate.checkInventoryData,
+  utilities.handleErrors(invController.updateInventory)
+)
 
 module.exports = router

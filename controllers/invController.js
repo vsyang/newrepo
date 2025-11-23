@@ -205,4 +205,106 @@ invCont.getInventoryJSON = async (req, res, next) => {
   }
 }
 
+/* ***************************
+ *  Build Edit View with Values Already Filled
+ * ************************** */
+invCont.buildEditInventory = async (req, res, next) => {
+  try {
+    const inv_id = req.params.invId
+
+    const item = await invModel.getInventoryByInvId(inv_id)
+
+    if (!item) {
+      const error = new Error("Vehicle not found")
+      error.status = 404
+      throw error
+    }
+
+    const nav = await utilities.getNav()
+    const classificationList = await utilities.buildClassificationList(item.classification_id)
+
+    res.render("inventory/edit-inventory", {
+      title: "Edit " + item.inv_year + " " + item.inv_make + " " + item.inv_model,
+      nav,
+      classificationList,
+      errors: null,
+      inv_id: item.inv_id,
+      inv_make: item.inv_make,
+      inv_model: item.inv_model,
+      inv_description: item.inv_description,
+      inv_image: item.inv_image,
+      inv_thumbnail: item.inv_thumbnail,
+      inv_price: item.inv_price,
+      inv_year: item.inv_year,
+      inv_miles: item.inv_miles,
+      inv_color: item.inv_color,
+    })
+  } catch (err) {
+    next(err)
+  }
+}
+
+/* ***************************
+ *  Process vehicle update
+ * ************************** */
+invCont.updateInventory = async (req, res, next) => {
+  try {
+    const {
+      inv_id,
+      inv_make,
+      inv_model,
+      inv_year,
+      inv_description,
+      inv_image,
+      inv_thumbnail,
+      inv_price,
+      inv_miles,
+      inv_color,
+      classification_id,
+    } = req.body
+
+    const result = await invModel.updateInventory(
+      inv_id,
+      inv_make,
+      inv_model,
+      inv_year,
+      inv_description,
+      inv_image,
+      inv_thumbnail,
+      inv_price,
+      inv_miles,
+      inv_color,
+      classification_id
+    )
+
+    if (result.rowCount > 0) {
+      req.flash("notice", `The ${inv_year} ${inv_make} ${inv_model} was successfully updated.`)
+      return res.redirect("/inv/")
+    } else {
+      req.flash("notice", "Sorry, the vehicle could not be updated.")
+      const nav = await utilities.getNav()
+      const classificationList = await utilities.buildClassificationList(classification_id)
+
+      return res.status(501).render("inventory/edit-inventory", {
+        title: `Edit ${inv_year} ${inv_make} ${inv_model}`,
+        nav,
+        classificationList,
+        errors: null,
+        inv_id,
+        inv_make,
+        inv_model,
+        inv_year,
+        inv_description,
+        inv_image,
+        inv_thumbnail,
+        inv_price,
+        inv_miles,
+        inv_color,
+      })
+    }
+  } catch (err) {
+    next(err)
+  }
+}
+
 module.exports = invCont

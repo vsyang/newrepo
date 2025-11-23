@@ -448,4 +448,10 @@ textarea {
     margin-top: 5px;
   }
 
+  /** Account Management View **/
+  h3 {
+    grid-column: span 2;
+    margin-bottom: 10px;
+  }
+
 }

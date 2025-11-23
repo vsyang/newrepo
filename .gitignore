@@ -20,3 +20,6 @@ README.md
 
 # "build the application" from section Review the .gitignore file
 pnpm-lock.yaml
+
+# mock accounts from examples
+mock_accounts.txt

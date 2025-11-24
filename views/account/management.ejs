@@ -6,26 +6,28 @@
 
 <%- messages() %>
 
-<% if (account_firstname) { %>
-  <h3>Welcome <%= account_firstname %>!</h3>
+<% if (account_type === "Employee" || account_type === "Admin") { %>
+  <h2>Welcome <%= account_firstname %>!</h2>
+<% } else { %>
+  <p>Welcome <%= account_firstname %>!</p>
 <% } %>
 
-
-<!-- <% if (errors) { %>
+<% if (errors) { %>
   <ul class="notice">
     <% errors.array().forEach(error => { %>
       <li><%= error.msg %></li>
       <% }) %>
     </ul>
-    <% } %> -->
-    
-<p>You're logged in</p>
-
-<p>
-  <a href="/account/update/<%= account_id %>">Update Account Information</a>
-</p>
-
-<% if (account_type === "Employee" || account_type === "Admin") { %>
-  <h3>Inventory Management</h3>
-  <p><a href="/inv/">Manage Inventory</a></p>
 <% } %>
+    
+
+<div class="account-management">
+  <p>
+    <a href="/account/update/<%= account_id %>" >Update Account Information</a>
+  </p>
+  
+  <% if (account_type === "Employee" || account_type === "Admin") { %>
+    <h3 class="span2">Inventory Management</h3>
+    <p><a href="/inv/">Manage Inventory</a></p>
+  <% } %>
+</div>

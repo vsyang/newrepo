@@ -251,7 +251,7 @@ input, textarea {
   margin: 1px 0 5px;
 }
 
-.register {
+button {
   display: block;
   margin: 10px auto;
   padding: 5px 15px;
@@ -329,7 +329,7 @@ input:required:valid {
 }
 
 /** New Classification View **/
-.add-classification , .add-inventory, .update, .delete {
+.add-classification , .add-inventory, .update, .delete, .update-form {
   padding: 20px;
   width: 90%;
   max-width: 450px;
@@ -374,6 +374,21 @@ textarea {
 /** Account Management View **/
 .margin-right {
   margin-right: 15px;
+}
+
+.account-management a {
+  text-decoration: underline;
+  color: rgb(4, 4, 177);
+}
+
+.account-management h2, 
+.account-management h3 {
+  margin: 10px 0;
+  line-height: 20px;
+}
+
+.account-management p:first-of-type {
+  margin-bottom: 10px;
 }
 
 /** Large Screen View **/
@@ -490,9 +505,7 @@ textarea {
   }
 
   /** Account Management View **/
-  h3 {
+  .account-management {
     grid-column: span 2;
-    margin-bottom: 10px;
   }
-
 }

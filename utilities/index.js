@@ -175,6 +175,7 @@ Util.checkAuthorization = async function (req, res, next) {
       title: "Login",
       nav,
       errors: null,
+      account_email: "",
     })
   }
 
@@ -210,6 +211,7 @@ Util.checkAuthorization = async function (req, res, next) {
       title: "Login",
       nav,
       errors: null,
+      account_email: "",
     })
   }
 }

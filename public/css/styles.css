@@ -376,6 +376,10 @@ textarea {
   margin-right: 15px;
 }
 
+.account-management {
+  margin-top: 10px;
+}
+
 .account-management a {
   text-decoration: underline;
   color: rgb(4, 4, 177);

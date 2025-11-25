@@ -172,6 +172,23 @@ async function deleteInventoryItem(inv_id) {
   }
 }
 
+/* ***************************
+ *  Count Vehicles in Inventory by Classification ID
+ * ************************** */
+async function countInventoryByClassification(classification_id) {
+  const sql = "SELECT COUNT(*) FROM public.inventory WHERE classification_id = $1"
+  const data = await pool.query(sql, [classification_id])
+  return Number(data.rows[0].count)
+}
+
+/* ***************************
+ *  Delete Classification
+ * ************************** */
+async function deleteClassification(classification_id) {
+  const sql = "DELETE FROM public.classification WHERE classification_id = $1"
+  return await pool.query(sql, [classification_id])
+}
+
 module.exports = {
   getClassifications,
   getInventoryByClassificationId,
@@ -180,5 +197,7 @@ module.exports = {
   checkExistingClassification,
   addInventory,
   updateInventory,
-  deleteInventoryItem
+  deleteInventoryItem,
+  countInventoryByClassification,
+  deleteClassification,
 }

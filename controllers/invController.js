@@ -100,12 +100,11 @@ invCont.addClassification = async function (req, res, next) {
     const result = await invModel.addClassification(classification_name)
 
     if (result.rowCount > 0) {
-      req.flash("notice", `New ${classification_name} classification added successfully.`)
-      const nav = await utilities.getNav()
-      return res.status(201).render("inventory/management", {
-        title: "Vehicle Management",
-        nav,
-      })
+      req.flash(
+        "notice",
+        `New ${classification_name} classification added successfully.`
+      )
+      return res.redirect("/inv/")
     } else {
       req.flash("notice", "Provide a correct classification name.")
       const nav = await utilities.getNav()
@@ -206,7 +205,7 @@ invCont.getInventoryJSON = async (req, res, next) => {
     if (!invData || invData.length === 0) {
       return res.json([])
     }
-    
+
     return res.json(invData)
   } catch (err) {
     next(err)

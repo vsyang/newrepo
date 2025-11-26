@@ -329,7 +329,12 @@ input:required:valid {
 }
 
 /** New Classification View **/
-.add-classification , .add-inventory, .update, .delete, .update-form {
+.add-classification , 
+.add-inventory, 
+.update, 
+.delete, 
+.update-form,
+.delete-classification {
   padding: 20px;
   width: 90%;
   max-width: 450px;

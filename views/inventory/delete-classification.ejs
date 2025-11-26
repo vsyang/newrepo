@@ -20,12 +20,15 @@
     <fieldset>
       <legend>&nbsp;</legend>
 
-      <input type="hidden" name="classification_id" value="<%= classification_id %>">
+      <input 
+        type="hidden" 
+        name="classification_id" 
+        value="<%= classification_id %>">
 
       <label for="classification_id">Classification</label>
       <input 
         type="text"
-        id="classification_name"
+        id="classification_id"
         name="classification_name"
         readonly
         value="<%= classification_name || '' %>">

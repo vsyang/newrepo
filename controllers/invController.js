@@ -58,6 +58,7 @@ invCont.buildManagementView = async function (req, res, next) {
   try {
     const nav = await utilities.getNav()
     const classificationSelect = await utilities.buildClassificationList()
+    
 
     res.render("inventory/management", {
       title: "Vehicle Management",

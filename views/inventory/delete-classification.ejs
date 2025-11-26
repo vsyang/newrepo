@@ -1,0 +1,36 @@
+<% if (title) { %>
+  <h1>
+    <%= title %>
+  </h1>
+<% } else { res.redirect('/') } %>
+
+<%- messages() %>
+
+<% if (errors) { %>
+  <ul class="notice">
+    <% errors.array().forEach(error => { %>
+      <li><%= error.msg %></li>
+    <% }) %>
+  </ul>
+<% } %>
+
+<div class="delete-classification">
+  <p class="italicize">CONFIRM DELETION - THE DELETION IS PERMANENT.</p>
+  <form action="/inv/delete-classification" method="post">
+    <fieldset>
+      <legend>&nbsp;</legend>
+
+      <input type="hidden" name="classification_id" value="<%= classification_id %>">
+
+      <label for="classification_id">Classification</label>
+      <input 
+        type="text"
+        id="classification_name"
+        name="classification_name"
+        readonly
+        value="<%= classification_name || '' %>">
+
+      <button class="submit" type="submit">Delete Classification</button>
+    </fieldset>
+  </form>
+</div>

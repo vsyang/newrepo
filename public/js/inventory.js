@@ -22,46 +22,71 @@ classificationList.addEventListener("change", function () {
   }) 
 })
 
-function buildInventoryList(data) { 
-  let inventoryDisplay = document.getElementById("inventoryDisplay"); 
-  let classification_id = classificationList.value;
-
-  // Clear previous delete actions
-  emptyActionsDiv.innerHTML = ""; 
-
-  // ALWAYS show a table — even if it's empty
-  let dataTable = '<thead>'; 
-  dataTable += '<tr><th>Vehicle Name</th><td>&nbsp;</td><td>&nbsp;</td></tr>'; 
-  dataTable += '</thead>'; 
-  dataTable += '<tbody>';
-
-  if (data.length > 0) {
-    // There ARE vehicles, list them
-    data.forEach(function (element) { 
-      dataTable += `<tr><td>${element.inv_make} ${element.inv_model}</td>`; 
-      dataTable += `<td><a href='/inv/edit/${element.inv_id}' title='Click to update'>Modify</a></td>`; 
-      dataTable += `<td><a href='/inv/delete/${element.inv_id}' title='Click to delete'>Delete</a></td></tr>`; 
-    });
-  } else {
-    // Classification is EMPTY → show empty row
-    dataTable += `<tr><td colspan="3">No vehicles found</td></tr>`;
-
-    // Admin gets delete link
+// Build inventory items into HTML table components and inject into DOM 
+function buildInventoryList(data) {
+  let inventoryDisplay = document.getElementById("inventoryDisplay");
+  
+  // If there are NO vehicles in this classification
+  if (!data || data.length === 0) {
+    // If the logged-in user is an Admin, show delete option INSTEAD of table
     if (ACCOUNT_TYPE === "Admin") {
-      emptyActionsDiv.innerHTML = `
-        <p>This classification has no vehicles.</p>
+      const classification_id = classificationList.value;
+      inventoryDisplay.innerHTML = `
+        <p>There are no vehicles in this classification.</p>
         <p>
           <a href="/inv/delete-classification/${classification_id}">
             Delete this classification
           </a>
         </p>
       `;
+      return; // stop here, no table
     }
-    // Employees get nothing extra — table still shows
+
+  //   // Set up the table labels
+  //   let dataTable = '<thead>';
+  //   dataTable += '<tr><th>Vehicle Name</th><td>&nbsp;</td><td>&nbsp;</td></tr>';
+  //   dataTable += '</thead>';
+  //   // Set up the table body
+  //   dataTable += '<tbody>';
+  //   // Iterate over all vehicles in the array and put each in a row
+  //   data.forEach(function (element) {
+  //     console.log(element.inv_id + ", " + element.inv_model);
+  //     dataTable += `<tr><td>${element.inv_make} ${element.inv_model}</td>`;
+  //     dataTable += `<td><a href='/inv/edit/${element.inv_id}' title='Click to update'>Modify</a></td>`;
+  //     dataTable += `<td><a href='/inv/delete/${element.inv_id}' title='Click to delete'>Delete</a></td></tr>`;
+  //   })
+  //   dataTable += '</tbody>';
+  //   // Display the contents in the Inventory Management view
+  //   inventoryDisplay.innerHTML = dataTable;
+    // }
+    // Regular employee: show an empty table with a "No vehicles" row
+    let emptyTable = '<thead>'; 
+    emptyTable += '<tr><th>Vehicle Name</th><td>&nbsp;</td><td>&nbsp;</td></tr>'; 
+    emptyTable += '</thead>'; 
+    emptyTable += '<tbody>'; 
+    emptyTable += '<tr><td colspan="3">No vehicles found</td></tr>';
+    emptyTable += '</tbody>';
+
+    inventoryDisplay.innerHTML = emptyTable;
+    return;
   }
 
+  // If we DO have vehicles, everyone sees the same table
+  // Set up the table labels 
+  let dataTable = '<thead>'; 
+  dataTable += '<tr><th>Vehicle Name</th><td>&nbsp;</td><td>&nbsp;</td></tr>'; 
+  dataTable += '</thead>'; 
+  // Set up the table body 
+  dataTable += '<tbody>'; 
+  // Iterate over all vehicles in the array and put each in a row 
+  data.forEach(function (element) { 
+    console.log(element.inv_id + ", " + element.inv_model); 
+    dataTable += `<tr><td>${element.inv_make} ${element.inv_model}</td>`; 
+    dataTable += `<td><a href='/inv/edit/${element.inv_id}' title='Click to update'>Modify</a></td>`; 
+    dataTable += `<td><a href='/inv/delete/${element.inv_id}' title='Click to delete'>Delete</a></td></tr>`; 
+  }); 
   dataTable += '</tbody>'; 
-
-  // Display table no matter what
+  // Display the contents in the Inventory Management view 
   inventoryDisplay.innerHTML = dataTable; 
 }
+

@@ -103,12 +103,22 @@ async function accountLogin(req, res) {
   try {
     if (await bcrypt.compare(account_password, accountData.account_password)) {
       delete accountData.account_password
+
+      // ⭐ STORE USER INFO IN SESSION ⭐
+      req.session.account_id = accountData.account_id
+      req.session.account_firstname = accountData.account_firstname
+      req.session.account_lastname = accountData.account_lastname
+      req.session.account_email = accountData.account_email
+      req.session.account_type = accountData.account_type
+
       const accessToken = jwt.sign(accountData, process.env.ACCESS_TOKEN_SECRET, { expiresIn: 3600 * 1000 })
+
       if(process.env.NODE_ENV === 'development') {
         res.cookie("jwt", accessToken, { httpOnly: true, maxAge: 3600 * 1000 })
       } else {
         res.cookie("jwt", accessToken, { httpOnly: true, secure: true, maxAge: 3600 * 1000 })
       }
+
       return res.redirect("/account/")
     }
     else {

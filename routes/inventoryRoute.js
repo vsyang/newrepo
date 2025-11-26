@@ -112,15 +112,23 @@ router.post("/delete",
 /* ******************************************
  * Route to build delete classification
  *******************************************/
-router.get("/delete-classification/:classificationId",
+router.get(
+  "/delete-classification/:classificationId",
   utilities.checkAuthorization,
-  utilities.handleErrors(invController.deleteClassification)
+  utilities.handleErrors(invController.buildDeleteClassification)
 )
+
 /* ******************************************
  * Route to process classification deletion
  *******************************************/
 router.post("/delete-classification",
   utilities.checkAuthorization,
   utilities.handleErrors(invController.deleteClassification)  
+)
+
+router.post(
+  "/delete-classification",
+  utilities.checkAuthorization,
+  utilities.handleErrors(invController.deleteClassification)
 )
 module.exports = router

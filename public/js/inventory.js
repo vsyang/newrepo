@@ -35,30 +35,13 @@ function buildInventoryList(data) {
         <p>There are no vehicles in this classification.</p>
         <p>
           <a href="/inv/delete-classification/${classification_id}">
-            Delete this classification
+            Delete this classification?
           </a>
         </p>
       `;
-      return; // stop here, no table
+      return; 
     }
 
-  //   // Set up the table labels
-  //   let dataTable = '<thead>';
-  //   dataTable += '<tr><th>Vehicle Name</th><td>&nbsp;</td><td>&nbsp;</td></tr>';
-  //   dataTable += '</thead>';
-  //   // Set up the table body
-  //   dataTable += '<tbody>';
-  //   // Iterate over all vehicles in the array and put each in a row
-  //   data.forEach(function (element) {
-  //     console.log(element.inv_id + ", " + element.inv_model);
-  //     dataTable += `<tr><td>${element.inv_make} ${element.inv_model}</td>`;
-  //     dataTable += `<td><a href='/inv/edit/${element.inv_id}' title='Click to update'>Modify</a></td>`;
-  //     dataTable += `<td><a href='/inv/delete/${element.inv_id}' title='Click to delete'>Delete</a></td></tr>`;
-  //   })
-  //   dataTable += '</tbody>';
-  //   // Display the contents in the Inventory Management view
-  //   inventoryDisplay.innerHTML = dataTable;
-    // }
     // Regular employee: show an empty table with a "No vehicles" row
     let emptyTable = '<thead>'; 
     emptyTable += '<tr><th>Vehicle Name</th><td>&nbsp;</td><td>&nbsp;</td></tr>'; 
@@ -72,13 +55,10 @@ function buildInventoryList(data) {
   }
 
   // If we DO have vehicles, everyone sees the same table
-  // Set up the table labels 
   let dataTable = '<thead>'; 
   dataTable += '<tr><th>Vehicle Name</th><td>&nbsp;</td><td>&nbsp;</td></tr>'; 
   dataTable += '</thead>'; 
-  // Set up the table body 
   dataTable += '<tbody>'; 
-  // Iterate over all vehicles in the array and put each in a row 
   data.forEach(function (element) { 
     console.log(element.inv_id + ", " + element.inv_model); 
     dataTable += `<tr><td>${element.inv_make} ${element.inv_model}</td>`; 
@@ -86,7 +66,6 @@ function buildInventoryList(data) {
     dataTable += `<td><a href='/inv/delete/${element.inv_id}' title='Click to delete'>Delete</a></td></tr>`; 
   }); 
   dataTable += '</tbody>'; 
-  // Display the contents in the Inventory Management view 
   inventoryDisplay.innerHTML = dataTable; 
 }
 
